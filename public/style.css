@@ -1,0 +1,105 @@
+
+        :root {
+            --sidebar-width: 280px; /* Define a CSS variable for sidebar width */
+        }
+
+
+        @media (min-width: 992px){
+            .admin-sidebar {
+            background-color: black;
+            color: white;
+            /* Fixed positioning for larger screens */
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: var(--sidebar-width); /* Use the CSS variable for width */
+            overflow-y: auto; /* Allow sidebar content to scroll if it overflows */
+            z-index: 1000; /* Ensure sidebar is above other content */
+            padding-top: 1rem; /* Adjust as needed for spacing from top */
+        }
+
+        }
+        
+
+        /* Adjustments for smaller screens (sidebar becomes collapsible) */
+        @media (max-width: 991.98px) { /* Up to large breakpoint -1px */
+            .admin-sidebar {
+                position: static; /* IMPORTANT: No longer fixed on small screens */
+                width: 100%; /* Sidebar takes full width above content */
+                height: auto; /* Height adjusts to content */
+                padding-top: 0; /* No specific top padding for static */
+                z-index: auto; /* Reset z-index for static positioning */
+            }
+            /* Ensure the collapsed menu takes full width and is styled correctly */
+            .admin-sidebar .navbar-collapse.show {
+                position: static; /* IMPORTANT: No longer fixed and full screen */
+                width: 100%;
+                height: auto; /* Allow content to push it down */
+                overflow-y: auto;
+                background-color: black; /* Keep background */
+                /* Remove top, left, right, bottom to prevent covering content */
+            }
+        }
+
+
+        /* Main content area adjustment */
+        .main-content {
+            margin-left: 0; /* Default for small screens */
+            width: 100%; /* Default for small screens */
+            /* No padding-top here as sidebar is static on small screens */
+        }
+
+        @media (min-width: 992px) { /* Adjust for large screens and up (lg breakpoint) */
+            .main-content {
+                margin-left: var(--sidebar-width); /* Push content to the right by sidebar's width */
+                width: calc(100% - var(--sidebar-width)); /* Content takes remaining width */
+            }
+            .admin-sidebar .navbar-toggler {
+                display: none; /* Hide toggler on large screens if sidebar is always visible */
+            }
+        }
+
+        /* Styling for nav links */
+        .admin-sidebar .nav-link {
+            color: white;
+            padding: 0.75rem 1rem; /* Adjust padding for better look */
+        }
+
+        .admin-sidebar .nav-link.active {
+            background-color: #0d6efd; /* Bootstrap primary color */
+            border-radius: 0.25rem;
+        }
+
+        .admin-sidebar .nav-link:hover {
+            background-color: #343a40; /* Darker hover effect */
+        }
+
+        /* For the logo and brand name */
+        .admin-sidebar .brand-logo-container {
+            padding: 15px;
+            text-align: center;
+        }
+        .admin-sidebar .brand-logo-container img {
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .admin-sidebar .brand-logo-container span {
+            color: white;
+        }
+
+        /* Ensure scrollbar doesn't appear for body unless needed */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Specific style for logout button to look like a link */
+        .admin-sidebar .nav-link.logout-button {
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 100%; /* To make it clickable across the full width */
+            text-align: left; /* Align text to left */
+        }
+    
